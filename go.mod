@@ -3,7 +3,7 @@ module github.com/rezaAmiri123/edatV2
 go 1.20
 
 replace (
-	github.com/jackc/pgconn => github.com/jackc/pgconn v1.*.*
+	github.com/jackc/pgconn => github.com/jackc/pgconn v1.13.0
 )
 
 require (
