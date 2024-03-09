@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	// "github.com/jackc/pgx/pgconn"
-	// "github.com/jackc/pgerrcode"
+	"github.com/jackc/pgerrcode"
 	"github.com/rezaAmiri123/edatV2/am"
 	"github.com/rezaAmiri123/edatV2/tm"
 )
