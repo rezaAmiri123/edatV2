@@ -2,10 +2,11 @@ module github.com/rezaAmiri123/edatV2
 
 go 1.20
 
-replace github.com/jackc/pgconn latest => github.com/jackc/pgconn v1.13.0
+replace github.com/jackc/pgconn v1.14.3 => github.com/jackc/pgconn v1.13.0
 
 require (
 	github.com/google/uuid v1.6.0
+	github.com/jackc/pgerrcode v0.0.0-20220416144525-469b46aa5efa
 	github.com/stackus/errors v0.1.5
 	github.com/stretchr/testify v1.8.4
 	google.golang.org/protobuf v1.32.0
