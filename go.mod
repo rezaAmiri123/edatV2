@@ -4,7 +4,7 @@ go 1.20
 
 replace (
 	// github.com/jackc/pgconn latest => github.com/jackc/pgconn v1.13.0
-	github.com/jackc/pgx/pgtype => github.com/jackc/pgx/pgtype v1.12.0
+	github.com/jackc/pgtype => github.com/jackc/pgtype v1.12.0
 )
 
 require (
