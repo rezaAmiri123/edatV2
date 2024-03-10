@@ -5,9 +5,10 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	
+
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgerrcode"
+	// "github.com/jackc/pgx/pgtype"
 	"github.com/rezaAmiri123/edatV2/am"
 	"github.com/rezaAmiri123/edatV2/tm"
 	"github.com/stackus/errors"
@@ -106,7 +107,7 @@ func (s OutboxStore) MarkPublished(ctx context.Context, ids ...string) error {
 		SET published_at = CURRENT_TIMESTAMP 
 		WHERE id = ANY ($1)`
 	
-	msgIDs := &pgtype.Array[pgtype.Text]{}
+	msgIDs := &pgtype.TextA
 	err := msgIDs.Dims
 	
 }
