@@ -8,7 +8,6 @@ import (
 	
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgerrcode"
-	// "github.com/jackc/pgx/v5/pgconn"
 	"github.com/rezaAmiri123/edatV2/am"
 	"github.com/rezaAmiri123/edatV2/tm"
 )

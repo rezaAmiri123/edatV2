@@ -8,7 +8,7 @@ import (
 
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgerrcode"
-	_ "github.com/jackc/pgx/pgtype"
+	"github.com/jackc/pgtype"
 	"github.com/rezaAmiri123/edatV2/am"
 	"github.com/rezaAmiri123/edatV2/tm"
 	"github.com/stackus/errors"
@@ -106,10 +106,16 @@ func (s OutboxStore) MarkPublished(ctx context.Context, ids ...string) error {
 	const query = `UPDATE %s 
 		SET published_at = CURRENT_TIMESTAMP 
 		WHERE id = ANY ($1)`
-	
-	msgIDs := &pgtype.TextCodec{}
-	err := msgIDs.Dims
-	
+
+	msgIDs := &pgtype.TextArray{}
+	err := msgIDs.Set(ids)
+	if err != nil {
+		return err
+	}
+
+	_, err = s.db.ExecContext(ctx, s.table(query), msgIDs)
+
+	return err
 }
 
 func (s OutboxStore) table(query string, args ...any) string {
