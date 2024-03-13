@@ -10,7 +10,7 @@ import (
 type rawMessage struct {
 	id         string
 	name       string
-	subjet     string
+	subject     string
 	data       []byte
 	metadata   ddd.Metadata
 	sentAt     time.Time
@@ -25,7 +25,7 @@ type rawMessage struct {
 var _ am.IncomingMessage = (*rawMessage)(nil)
 
 func (m *rawMessage) ID() string             { return m.id }
-func (m *rawMessage) Subject() string        { return m.subjet }
+func (m *rawMessage) Subject() string        { return m.subject }
 func (m *rawMessage) MessageName() string    { return m.name }
 func (m *rawMessage) Metadata() ddd.Metadata { return m.metadata }
 func (m *rawMessage) SentAt() time.Time      { return m.sentAt }
