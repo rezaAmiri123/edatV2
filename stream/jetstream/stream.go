@@ -140,7 +140,13 @@ func (s *Stream) Subscribe(topicName string, handler am.MessageHandler, options 
 	var sub *nats.Subscription
 	if groupName := subCfg.GroupName(); groupName == "" {
 		sub, err = s.js.Subscribe(topicName, s.handleMsg(subCfg, handler), opts...)
+	} else {
+		sub, err = s.js.QueueSubscribe(topicName, groupName, s.handleMsg(subCfg, handler), opts...)
 	}
+
+	s.subs = append(s.subs, sub)
+
+	return subscription{sub}, nil
 
 }
 
