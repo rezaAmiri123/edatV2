@@ -6,6 +6,7 @@ go 1.20
 replace github.com/jackc/pgtype => github.com/jackc/pgtype v1.12.0
 
 require (
+	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-chi/render v1.0.3
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgconn v1.14.3
