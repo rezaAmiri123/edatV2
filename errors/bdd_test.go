@@ -1,7 +1,6 @@
 package errors
 
 import (
-	"context"
 	stderrors "errors"
 	"fmt"
 	"net/http"
@@ -383,9 +382,13 @@ func InitializeTestSuite(ctx *godog.TestSuiteContext) {
 }
 
 func InitializeScenario(ctx *godog.ScenarioContext) {
-	ctx.Before(func(ctx context.Context, sc *godog.Scenario) (context.Context, error) {
+	// ctx.Before(func(ctx context.Context, sc *godog.Scenario) (context.Context, error) {
+	// 	expectedError = ErrUnknown
+	// 	return ctx, nil
+	// })
+	ctx.BeforeScenario(func(sc *godog.Scenario) {
 		expectedError = ErrUnknown
-		return ctx, nil
+		
 	})
 
 	// Given
