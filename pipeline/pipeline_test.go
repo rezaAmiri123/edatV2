@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/pkg/errors"
 	"github.com/rezaAmiri123/edatV2/pipeline"
+	"golang.org/x/xerrors"
 	gc "gopkg.in/check.v1"
 )
 
@@ -32,37 +32,37 @@ func (s *PipelineTestSuite) TestDataFlow(c *gc.C) {
 	assertAllProcessed(c, src.data)
 }
 
-func (s *PipelineTestSuite) TestProcessorErrorHandling(c *gc.C) {
-	expErr := errors.New("some error")
+func(s *PipelineTestSuite)TestProcessorErrorHandling(c *gc.C){
+	expErr := xerrors.New("some error")
 	stages := make([]pipeline.StageRunner, 10)
-	for i := 0; i < len(stages); i++ {
+	for i := 0;i<len(stages);i++{
 		var err error
-		if i == 5 {
+		if i == 5{
 			err = expErr
 		}
-		stages[i] = testStage{c: c, err: err}
+		stages[i] = testStage{c: c,err: err}
 	}
 
 	src := &sourceStub{data: stringPayloads(3)}
 	sink := new(sinkStub)
 
 	p := pipeline.New(stages...)
-	err := p.Process(context.Background(), src, sink)
+	err := p.Process(context.Background(),src,sink)
 	c.Assert(err, gc.ErrorMatches, "(?s).*some error.*")
 }
 
 func (s *PipelineTestSuite) TestSourceErrorHandling(c *gc.C) {
-	expErr := errors.New("some error")
-	src := &sourceStub{data: stringPayloads(3), err: expErr}
+	expErr := xerrors.New("some error")
+	src := &sourceStub{data: stringPayloads(3),err: expErr}
 	sink := new(sinkStub)
 
-	p := pipeline.New(testStage{c: c})
-	err := p.Process(context.Background(), src, sink)
+	p := pipeline.New(testStage{c:  c})
+	err := p.Process(context.Background(),src,sink)
 	c.Assert(err, gc.ErrorMatches, "(?s).*pipeline source: some error.*")
 }
 
 func (s *PipelineTestSuite) TestSinkErrorHandling(c *gc.C) {
-	expErr := errors.New("some error")
+	expErr := xerrors.New("some error")
 	src := &sourceStub{data: stringPayloads(3)}
 	sink := &sinkStub{err: expErr}
 
@@ -75,8 +75,8 @@ func (s *PipelineTestSuite) TestPayloadDiscarding(c *gc.C) {
 	src := &sourceStub{data: stringPayloads(3)}
 	sink := &sinkStub{}
 
-	p := pipeline.New(testStage{c: c, dropPayloads: true})
-	err := p.Process(context.Background(), src, sink)
+	p := pipeline.New(testStage{c:c, dropPayloads: true})
+	err := p.Process(context.Background(), src,sink)
 	c.Assert(err, gc.IsNil)
 	c.Assert(sink.data, gc.HasLen, 0, gc.Commentf("expected all payloads to be discarded by stage processor"))
 	assertAllProcessed(c, sink.data)
