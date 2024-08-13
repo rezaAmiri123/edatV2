@@ -9,6 +9,8 @@ require (
 	github.com/cucumber/godog v0.11.0
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-chi/render v1.0.3
+	github.com/golang/mock v1.3.1
+	github.com/golang/protobuf v1.5.3
 	github.com/google/uuid v1.6.0
 	github.com/hashicorp/go-multierror v1.0.0
 	github.com/jackc/pgconn v1.14.3
@@ -19,6 +21,7 @@ require (
 	github.com/pressly/goose/v3 v3.19.2
 	github.com/prometheus/client_golang v0.9.3
 	github.com/rs/zerolog v1.32.0
+	github.com/sirupsen/logrus v1.9.3
 	github.com/stackus/errors v0.1.5
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/otel v1.24.0
@@ -39,7 +42,6 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-immutable-radix v1.3.0 // indirect
 	github.com/hashicorp/go-memdb v1.3.0 // indirect
